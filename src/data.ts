@@ -14,5 +14,38 @@ export const tools = [
  {title:'AI Tools',items:['ChatGPT','Claude','Gemini','DeepSeek','GitHub Copilot','Claude Code','OpenAI Codex']},
  {title:'Productivity',items:['Microsoft Excel','Google Sheets','Работа с документами','Подготовка презентаций']}
 ]
-export type Project = {title:string;description:string;image?:string;stack?:string[];url?:string;github?:string}
-export const projects: Project[] = [] // Добавляйте сюда реальные проекты по мере готовности.
+export type Project = {
+  title: string
+  category: string
+  description: string
+  image: string
+  url?: string
+  sample?: { before: string; after: string }
+}
+
+export const projects: Project[] = [
+  {
+    title: 'Business Analytics',
+    category: 'Аналитика данных',
+    description: 'Дашборд для анализа продаж. Можно проследить динамику выручки, изучить заказы и посмотреть, какие товары приносят больше дохода.',
+    image: '/projects/business-analytics.webp',
+    url: 'https://business-analytics-a2ka.vercel.app',
+  },
+  {
+    title: 'TaskFlow',
+    category: 'Управление проектами',
+    description: 'Рабочее пространство для команды. У каждой задачи есть исполнитель, статус и срок. Календарь помогает планировать неделю, а по списку проектов удобно следить за прогрессом.',
+    image: '/projects/taskflow.webp',
+    url: 'https://taskflow-pi-pied.vercel.app',
+  },
+  {
+    title: 'Content Studio',
+    category: 'Копирайтинг и редактура',
+    description: 'Подборка моих текстов для лендингов, рассылок и соцсетей. В демонстрационных кейсах показываю путь от задачи до готового текста.',
+    image: '/projects/content-studio.webp',
+    sample: {
+      before: 'Крем для лица. Хорошо увлажняет. Подходит на каждый день.',
+      after: 'Крем для ежедневного ухода с мягкой текстурой. Легко распределяется по коже и помогает сделать привычный уход более комфортным.',
+    },
+  },
+]

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
-import { ArrowDown, ArrowUpRight, Menu, X, Sparkles, MousePointer2, Send, Github, Mail, Check, Plus } from 'lucide-react'
+import { ArrowDown, ArrowUpRight, Menu, X, Sparkles, MousePointer2, Send, Github, Mail, Check, ChevronDown } from 'lucide-react'
 import { services, tools, projects } from './data'
 
 const nav = [{label:'Услуги',href:'#services'},{label:'Обо мне',href:'#about'},{label:'Инструменты',href:'#tools'},{label:'Процесс',href:'#process'},{label:'Проекты',href:'#projects'}]
@@ -50,7 +50,41 @@ function Process() {
  return <section className="section section-shell process-section" id="process"><Reveal><SectionHeading index="04 / WORKFLOW" eyebrow="ПОНЯТНЫЙ ПРОЦЕСС" title={<>От задачи — к <em>результату.</em></>} desc="Прозрачный процесс без лишней сложности. На каждом этапе понятно, что происходит дальше."/></Reveal><div className="process-list">{steps.map((s,i)=><Reveal key={s[0]}><div className="process-step"><div className="process-number">{s[0]}<span/></div><div className="process-main"><h3>{s[1]}</h3><p>{s[2]}</p></div><div className="process-mark">{i===3?<Check/>:<ArrowUpRight/>}</div></div></Reveal>)}</div></section>
 }
 function Projects() {
- return <section className="section section-shell projects-section" id="projects"><Reveal><SectionHeading index="05 / SELECTED WORK" eyebrow="ПОРТФОЛИО" title={<>Проекты, которые <em>говорят.</em></>} desc="Здесь будут появляться реальные работы, описания задач и ссылки на готовые решения."/></Reveal>{projects.length? <div className="projects-grid">{projects.map(p=><article className="project-card" key={p.title}><div className="project-image">{p.image&&<img src={p.image} alt={p.title}/>}</div><h3>{p.title}</h3><p>{p.description}</p><div>{p.stack?.map(x=><span key={x}>{x}</span>)}</div></article>)}</div>:<Reveal><div className="projects-empty"><div className="empty-symbol"><Plus size={30}/></div><div><span className="eyebrow">SPACE FOR THE NEXT CASE</span><h3>Следующая история<br/><em>начнётся здесь.</em></h3><p>Раздел подготовлен для будущих проектов. Никаких придуманных кейсов — только реальные задачи и результаты.</p></div><span className="empty-index">COMING<br/>SOON / 001</span></div></Reveal>}</section>
+  return (
+    <section className="section section-shell projects-section" id="projects">
+      <Reveal>
+        <SectionHeading index="05 / SELECTED WORK" eyebrow="ПОРТФОЛИО" title={<>Избранные <em>проекты.</em></>} />
+      </Reveal>
+      <div className="projects-grid">
+        {projects.map(project => (
+          <article className="project-card" key={project.title}>
+            <div className="project-cover">
+              <img src={project.image} alt="" width={960} height={580} loading="lazy" />
+            </div>
+            <div className="project-copy">
+              <p className="project-category">{project.category}</p>
+              <h3>{project.title}</h3>
+              <p className="project-description">{project.description}</p>
+              {project.url ? (
+                <a className="project-action" href={project.url} target="_blank" rel="noopener noreferrer"
+                  aria-label={`Открыть ${project.title} в новой вкладке`}>
+                  Открыть сайт <ArrowUpRight size={17} aria-hidden="true" />
+                </a>
+              ) : project.sample && (
+                <details className="project-sample">
+                  <summary className="project-action">Пример редактуры <ChevronDown size={16} aria-hidden="true" /></summary>
+                  <dl>
+                    <dt>До</dt><dd>{project.sample.before}</dd>
+                    <dt>После</dt><dd>{project.sample.after}</dd>
+                  </dl>
+                </details>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  )
 }
 function Contact() {
  return <section className="contact-section section-shell" id="contact"><div className="contact-glow"/><Reveal><div className="contact-top"><span className="eyebrow">06 / LET'S CONNECT</span><span className="contact-availability"><span className="status-dot"/> OPEN FOR COLLABORATION</span></div><h2>Давайте сделаем<br/>что-то <em>полезное.</em></h2><p className="contact-intro">Расскажите о своей задаче — обсудим детали и найдём подходящий формат сотрудничества.</p><a className="button button-primary contact-cta" href="https://t.me/kesamyrk" target="_blank" rel="noreferrer">Написать в Telegram <ArrowUpRight size={18}/></a></Reveal><div className="contact-links"><a href="https://t.me/kesamyrk" target="_blank" rel="noreferrer"><span><Send size={17}/></span><small>TELEGRAM</small><strong>@kesamyrk</strong><ArrowUpRight className="contact-link-arrow"/></a><a href="https://github.com/kesamyrk" target="_blank" rel="noreferrer"><span><Github size={17}/></span><small>GITHUB</small><strong>github.com/kesamyrk</strong><ArrowUpRight className="contact-link-arrow"/></a><a href="mailto:karinameisarosh@mail.ru"><span><Mail size={17}/></span><small>EMAIL</small><strong>karinameisarosh@mail.ru</strong><ArrowUpRight className="contact-link-arrow"/></a></div></section>
