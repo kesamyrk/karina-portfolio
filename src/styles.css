@@ -67,7 +67,8 @@
   list-style: none;
 }
 .project-action::-webkit-details-marker { display: none; }
-.project-copy > .project-action, .project-sample { margin-top: auto; }
+.project-copy > .project-action { margin-top: auto; }
+.project-sample summary { color: #b6adbf; font-weight: 500; }
 .project-action:hover { color: white; text-decoration: underline; text-underline-offset: 4px; }
 .project-action:focus-visible { outline: 2px solid var(--violet); outline-offset: 4px; }
 .project-sample[open] summary svg { transform: rotate(180deg); }

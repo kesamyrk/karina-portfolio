@@ -65,12 +65,7 @@ function Projects() {
               <p className="project-category">{project.category}</p>
               <h3>{project.title}</h3>
               <p className="project-description">{project.description}</p>
-              {project.url ? (
-                <a className="project-action" href={project.url} target="_blank" rel="noopener noreferrer"
-                  aria-label={`Открыть ${project.title} в новой вкладке`}>
-                  Открыть сайт <ArrowUpRight size={17} aria-hidden="true" />
-                </a>
-              ) : project.sample && (
+              {project.sample && (
                 <details className="project-sample">
                   <summary className="project-action">Пример редактуры <ChevronDown size={16} aria-hidden="true" /></summary>
                   <dl>
@@ -78,6 +73,12 @@ function Projects() {
                     <dt>После</dt><dd>{project.sample.after}</dd>
                   </dl>
                 </details>
+              )}
+              {project.url && (
+                <a className="project-action" href={project.url} target="_blank" rel="noopener noreferrer"
+                  aria-label={`Открыть ${project.title} в новой вкладке`}>
+                  Открыть сайт <ArrowUpRight size={17} aria-hidden="true" />
+                </a>
               )}
             </div>
           </article>
